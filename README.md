@@ -1,4 +1,10 @@
-#.NET Development Packer Templates
+=======
+packer-collections
+==================
+
+A collection of packer scripts for setting up development machines
+
+#.NET Development VM Packer Templates
 
 This is a set of packer scripts to build a .NET development environment that can be used with Vagrant or other provisioners. It will do (broadly speaking):
 
