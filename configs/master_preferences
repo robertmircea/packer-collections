@@ -1,0 +1,57 @@
+{ 
+  "homepage" : "http://www.google.com", 
+  "homepage_is_newtabpage" : true, 
+  "browser" : { 
+    "show_home_button" : true, 
+    "check_default_browser" : false
+  },
+  "session" : {
+    "restore_on_startup" : 4,
+    "urls_to_restore_on_startup" : [
+      "http://www.google.com/ig"
+    ]
+  },
+  "bookmark_bar" : { 
+    "show_on_all_tabs" : true 
+  }, 
+  "sync_promo" : {
+    "show_on_first_run_allowed": false
+  },
+  "distribution" : {
+    "alternate_shortcut_text": "alternate text for the shortcut",
+    "auto_launch_chrome": true,
+    "chrome": true,
+    "app_host": true,
+    "chrome_frame": true,
+    "ready_mode": true,
+    "chrome_shortcut_icon_index": 1,
+    "disable_logging": true,
+    "import_bookmarks": true,
+    "import_bookmarks_from_file": "bookmarks.html",
+    "import_history": true,
+    "import_home_page": true,
+    "import_search_engine": true,
+    "ping_delay": 60,
+    "show_welcome_page": false,
+    "skip_first_run_ui": true,
+    "suppress_first_run_bubble": true,
+    "do_not_create_desktop_shortcut": true,
+    "do_not_create_quick_launch_shortcut": true,
+    "do_not_launch_chrome": true,
+    "do_not_register_for_update_launch": true,
+    "log_file": "log.txt",
+    "make_chrome_default": true,
+    "make_chrome_default_for_user": true,
+    "suppress_first_run_default_browser_prompt": true,
+    "msi": true,
+    "multi_install": true,
+    "require_eula": false,
+    "system_level": true,
+    "verbose_logging": true
+  }, 
+  "first_run_tabs" : [ 
+    "http://www.orange.com", 
+    "welcome_page", 
+    "new_tab_page" 
+  ] 
+}

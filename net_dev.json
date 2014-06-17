@@ -1,0 +1,196 @@
+{
+    "variables": {
+        "windows_iso_filename": "en_windows_8.1_professional_vl_with_update_x64_dvd_4065194.iso",
+        "visual_studio_iso_filename" : "en_visual_studio_ultimate_2013_with_update_2_x86_dvd_4238214.iso",
+        "reshaper_install_filename": "ReSharperSetup.8.2.0.2160.msi"
+    },
+
+    "builders": [
+        {
+            "type": "vmware-iso",
+            "iso_url": "./iso/{{user `windows_iso_filename`}}",
+            "iso_checksum_type": "md5",
+            "iso_checksum": "9b2bf609db207af3817167d8a6b87e62",
+            "headless": false,
+            "boot_wait": "2m",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_wait_timeout": "2h",
+            "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+            "guest_os_type": "windows8srv-64",
+            "tools_upload_flavor": "windows",
+            "disk_size": 61440,
+            "vnc_port_min": 5900,
+            "vnc_port_max": 5980,
+            "floppy_files": [
+                "./answer_files/81/Autounattend.xml",
+                "./scripts/win-updates.ps1",
+                "./scripts/openssh.ps1",
+                "./scripts/oracle-cert.cer",
+                "./answer_files/vs/AdminDeployment.xml"
+            ],
+            "vmx_data": {
+                "RemoteDisplay.vnc.enabled": "false",
+                "RemoteDisplay.vnc.port": "5900",
+                "memsize": "2048",
+                "numvcpus": "1",
+                "scsi0.virtualDev": "lsisas1068",
+                "virtualhw.version": "10",
+                "gui.fullScreenAtPowerOn": "FALSE",
+                "gui.viewModeAtPowerOn": "windowed",
+                "gui.lastPoweredViewMode": "windowed",
+                "gui.fitGuestUsingNativeDisplayResolution": "TRUE",
+                "gui.applyHostDisplayScalingToGuest": "FALSE"
+            }
+        },
+        {
+          "name": "virtualbox",
+          "type": "virtualbox-iso",
+          "guest_os_type": "Windows81_64",
+          "iso_url": "./iso/{{user `windows_iso_filename`}}",
+          "iso_checksum": "9b2bf609db207af3817167d8a6b87e62",
+          "iso_checksum_type": "md5",
+          "headless": false,
+          "boot_wait": "2m",
+          "ssh_username": "vagrant",
+          "ssh_password": "vagrant",
+          "ssh_wait_timeout": "2h",
+          "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
+          "disk_size": 61440,
+          "floppy_files": [
+            "./answer_files/81/Autounattend.xml",
+            "./scripts/win-updates.ps1",
+            "./scripts/openssh.ps1",
+            "./scripts/oracle-cert.cer",
+            "./answer_files/vs/AdminDeployment.xml"
+          ],
+          "vboxmanage": [
+            [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+            [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
+            [ "modifyvm", "{{.Name}}", "--vram", "32" ],
+            ["setextradata", "{{.Name}}", "VBoxInternal/CPUM/CMPXCHG16B", "1"],
+            ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+          ]
+        }
+
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "remote_path": "/tmp/script.bat",
+            "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+            "scripts": [
+                "./scripts/vm-guest-tools.bat",
+                "./scripts/vagrant-ssh.bat",
+                "./scripts/dpi.bat",
+                "./scripts/NoStupidHelp.bat"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "iso/{{user `visual_studio_iso_filename`}}",
+            "destination": "{{user `visual_studio_iso_filename`}}"
+        },
+        {
+            "type": "file",
+            "source": "iso/{{user `reshaper_install_filename`}}",
+            "destination": "{{user `reshaper_install_filename`}}"
+        },
+        {
+            "type": "file",
+            "source": "./iso/HideMenu.vsix",
+            "destination": "HideMenu.vsix"
+        },
+        {
+            "type": "file",
+            "source": "./iso/SourceCodePro_FontsOnly-1.017.zip",
+            "destination": "SourceCodePro_FontsOnly-1.017.zip"
+        },
+        {
+            "type": "file",
+            "source": "./iso/Git-1.9.2-preview20140411.exe",
+            "destination": "Git-1.9.2-preview20140411.exe"
+        },
+        {
+            "type": "file",
+            "source": "./iso/ConEmuSetup.140602.exe",
+            "destination": "ConEmuSetup.140602.exe"
+        },
+        {
+            "type": "file",
+            "source": "./configs/insane.vssettings",
+            "destination": "insane.vssettings"
+        },
+        {
+            "type": "file",
+            "source": "./configs/ConEmu.reg",
+            "destination": "ConEmu.reg"
+        },
+        {
+            "type": "file",
+            "source": "./configs/vsActionManager.DotSettings",
+            "destination": "vsActionManager.DotSettings"
+        },
+        {
+            "type": "file",
+            "source": "./configs/master_preferences",
+            "destination": "/tmp/master_preferences"
+        },
+        {
+            "type": "file",
+            "source": "./configs/notepad2",
+            "destination": "/tmp/"
+        },
+        {
+            "type": "shell",
+            "remote_path": "/tmp/fonts.ps1",
+            "script": "scripts/fonts.ps1",
+            "execute_command": "cmd.exe /c C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -File c:/windows/temp/fonts.ps1"
+        },
+        {
+            "type": "shell",
+            "remote_path": "/tmp/git.ps1",
+            "script": "scripts/git.ps1",
+            "execute_command": "cmd.exe /c C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -File c:/windows/temp/git.ps1"
+        },
+        {
+            "type": "shell",
+            "remote_path": "/tmp/conemu.ps1",
+            "script": "scripts/conemu.ps1",
+            "execute_command": "cmd.exe /c C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -File c:/windows/temp/conemu.ps1"
+        },
+        {
+            "type": "shell",
+            "remote_path": "/tmp/script.bat",
+            "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+            "scripts": [
+                "./scripts/chrome-enterprise.bat",
+                "./scripts/notepad2.bat"
+            ]
+        },  
+        {
+            "type": "shell",
+            "remote_path": "/tmp/vs2013.ps1",
+            "script": "scripts/vs2013.ps1",
+            "execute_command": "cmd.exe /c C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -File c:/windows/temp/vs2013.ps1"
+        },
+        {
+            "type": "shell",
+            "remote_path": "/tmp/win-updates.ps1",
+            "script": "scripts/win-updates.ps1",
+            "execute_command": "powershell -File c:/windows/temp/win-updates.ps1"
+        },
+        {
+            "type": "shell", "inline": ["rm -rf /tmp/*"]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "keep_input_artifact": false,
+            "compression_level": "9",
+            "output": "net_dev_{{.Provider}}.box",
+            "vagrantfile_template": "vagrantfile-net_dev.template"
+        }
+    ]
+}
