@@ -33,12 +33,12 @@ Most of the Windows installation process and the packer template were borrowed f
 ## Required ISOs and Sources
 
 - `en_windows_8.1_professional_vl_with_update_x64_dvd_4065194.iso` - MSDN
-- `en_visual_studio_ultimate_2013_with_update_2_x86_dvd_4238214.iso` - MSDN
+- `en_visual_studio_professional_2013_with_update_2_x86_dvd_4238045.iso` - MSDN
 - `HideMenu.vsix` - Included in repository (it's tiny)
 - `ReSharperSetup.8.2.0.2160.msi` - `http://download.jetbrains.com/resharper/ReSharperSetup.8.2.0.2160.msi`
 - `SourceCodePro_FontsOnly-1.017.zip` - Included in repository (again, tiny)
 - `ConEmuSetup.140602.exe` - `http://www.fosshub.com/download/ConEmuSetup.140602.exe`
-- `Git-1.9.2-preview20140411.exe` - `https://github.com/msysgit/msysgit/releases/download/Git-1.9.2-preview20140411/Git-1.9.2-preview20140411.exe`
+- `Git-1.9.4-preview20140611.exe` - `https://github.com/msysgit/msysgit/releases/download/Git-1.9.2-preview20140411/Git-1.9.2-preview20140411.exe`
 - `Notepad2_4.2.25_x64.exe` - `http://www.flos-freeware.ch/zip/Notepad2_4.2.25_x64.exe`
 - Google Chrome Enterprise - `https://dl.google.com/edgedl/chrome/install/GoogleChromeStandaloneEnterprise.msi`
 

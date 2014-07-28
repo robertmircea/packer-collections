@@ -1,8 +1,9 @@
 {
     "variables": {
         "windows_iso_filename": "en_windows_8.1_professional_vl_with_update_x64_dvd_4065194.iso",
-        "visual_studio_iso_filename" : "en_visual_studio_ultimate_2013_with_update_2_x86_dvd_4238214.iso",
-        "reshaper_install_filename": "ReSharperSetup.8.2.0.2160.msi"
+        "visual_studio_iso_filename" : "en_visual_studio_professional_2013_with_update_2_x86_dvd_4238045.iso",
+        "reshaper_install_filename": "ReSharperSetup.8.2.0.2160.msi",
+        "git_installer_filename": "Git-1.9.4-preview20140611.exe"
     },
 
     "builders": [
@@ -88,12 +89,12 @@
         },
         {
             "type": "file",
-            "source": "iso/{{user `visual_studio_iso_filename`}}",
-            "destination": "{{user `visual_studio_iso_filename`}}"
+            "source": "./iso/{{user `visual_studio_iso_filename`}}",
+            "destination": "visual_studio.iso"
         },
         {
             "type": "file",
-            "source": "iso/{{user `reshaper_install_filename`}}",
+            "source": "./iso/{{user `reshaper_install_filename`}}",
             "destination": "{{user `reshaper_install_filename`}}"
         },
         {
@@ -108,8 +109,8 @@
         },
         {
             "type": "file",
-            "source": "./iso/Git-1.9.2-preview20140411.exe",
-            "destination": "Git-1.9.2-preview20140411.exe"
+            "source": "./iso/{{user `git_installer_filename`}}",
+            "destination": "git-setup.exe"
         },
         {
             "type": "file",

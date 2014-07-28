@@ -1,4 +1,4 @@
-$gitInstallerPath = "C:\Users\vagrant\Git-1.9.2-preview20140411.exe"
+$gitInstallerPath = "C:\Users\vagrant\git-setup.exe"
 
 Start-Process -FilePath $gitInstallerPath  -ArgumentList '/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /COMPONENTS="assoc,assoc_sh"' -NoNewWindow -Wait
 

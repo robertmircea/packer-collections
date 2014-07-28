@@ -281,12 +281,31 @@
                     <ScopeDefault>true</ScopeDefault>
                     <ScopeDisplayName>Google</ScopeDisplayName>
                     <ScopeUrl>http://www.google.com/search?q={searchTerms}&amp;sourceid=ie7&amp;rls=com.microsoft:{language}:{referrer:source}&amp;ie={inputEncoding?}&amp;oe={outputEncoding?}</ScopeUrl>
-                    <ScopeKey>SearchProvider1</ScopeKey>
+                    <ScopeKey>Google</ScopeKey>
                     <FaviconURL>http://www.google.com/favicon.ico</FaviconURL>
                     <SuggestionsURL>http://clients5.google.com/complete/search?q={searchTerms}&amp;hl=da&amp;gl=dk&amp;client=ie8&amp;mw={ie:maxWidth}&amp;sh={ie:sectionHeight}&amp;rh={ie:rowHeight}&amp;inputencoding={inputEncoding}&amp;outputencoding={outputEncoding}</SuggestionsURL>
                 </Scope>
             </SearchScopes>
         </component>
+
+        <component name="Microsoft-Windows-IE-InternetExplorer" processorArchitecture="wow64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Home_Page>http://www.google.com/</Home_Page>
+            <DisableOOBAccelerators>true</DisableOOBAccelerators> 
+            <DisableFirstRunWizard>true</DisableFirstRunWizard>
+            <DisableAccelerators>true</DisableAccelerators>
+            <BlockPopups>yes</BlockPopups> 
+            <PlaySound>false</PlaySound> 
+            <SearchScopes>
+                <Scope wcm:action="add">
+                    <ScopeDefault>true</ScopeDefault>
+                    <ScopeDisplayName>Google</ScopeDisplayName>
+                    <ScopeUrl>http://www.google.com/search?q={searchTerms}&amp;sourceid=ie7&amp;rls=com.microsoft:{language}:{referrer:source}&amp;ie={inputEncoding?}&amp;oe={outputEncoding?}</ScopeUrl>
+                    <ScopeKey>Google</ScopeKey>
+                    <FaviconURL>http://www.google.com/favicon.ico</FaviconURL>
+                    <SuggestionsURL>http://clients5.google.com/complete/search?q={searchTerms}&amp;hl=da&amp;gl=dk&amp;client=ie8&amp;mw={ie:maxWidth}&amp;sh={ie:sectionHeight}&amp;rh={ie:rowHeight}&amp;inputencoding={inputEncoding}&amp;outputencoding={outputEncoding}</SuggestionsURL>
+                </Scope>
+            </SearchScopes>
+        </component>        
 
         <component name="Networking-MPSSVC-Svc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <FirewallGroups>

@@ -55,9 +55,9 @@ function Install-VisualStudioUpdate
  
     $argumentList = @("/Full","/Passive","/NoRestart","/NoWeb","/Log c:\VisualStudio_Update_Install.log")
  
-    Write-Progress -Activity "Install Visual Studio 2012 Update" -Status "Install..."
+    Write-Progress -Activity "Install Visual Studio Update" -Status "Install..."
     Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait 
-    Write-Progress -Activity "Install Visual Studio 2012 Update" -Completed
+    Write-Progress -Activity "Install Visual Studio Update" -Completed
 }
 
 
@@ -66,14 +66,14 @@ $destinationInstallPath = "c:\VisualStudio"
 Write-Host "Destination install path for Visual Studio ${destinationInstallPath}"
 
 Write-Host "Installing Visual Studio"
-$isoPath = "C:\users\vagrant\en_visual_studio_ultimate_2013_with_update_2_x86_dvd_4238214.iso"
+$isoPath = "C:\users\vagrant\visual_studio.iso"
 $rc = Mount-DiskImage -PassThru -ImagePath $isoPath
 $driveLetter = ($rc | Get-Volume).DriveLetter
 Install-VisualStudio -ImagePath "${driveLetter}:" -InstallPath $destinationInstallPath -AdminFile A:\AdminDeployment.xml -Silent $Silent
 
 Dismount-DiskImage -ImagePath $isoPath
 Remove-Item -Force -Path $isoPath
-Remove-Item -Force -Path c:\VisualStudio_Install*.log
+#Remove-Item -Force -Path c:\VisualStudio_Install*.log
 
 
 
